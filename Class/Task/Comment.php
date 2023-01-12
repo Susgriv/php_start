@@ -13,41 +13,41 @@ class Comment
    */
   public function __construct(User $author, Task $task, string $text)
   {
-    $this->setAuthor($author);
-    $this->setTask($task);
+    $this->author = $author;
+    $this->task = $task;
     $this->text = $text;
   }
 
   /**
    * @return User
    */
-  private function getAuthor(User $author): User
+  public function getAuthor(): User
   {
-    return $author;
+    return $this->author;
   }
 
   /**
    * @param User $author
    */
-  private function setAuthor(User $author): void
+  public function setAuthor(User $author): void
   {
-    $this->author = $this->getAuthor($author);
+    $this->author = $author;
   }
 
   /**
    * @return Task
    */
-  private function getTask(Task $task): Task
+  public function getTask(): Task
   {
-    return $task;
+    return $this->task;
   }
 
   /**
    * @param Task $task
    */
-  private function setTask(Task $task): void
+  public function setTask(Task $task): void
   {
-    $this->task = $this->getTask($task);
+    $this->task = $task;
   }
 
   /**
