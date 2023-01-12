@@ -5,7 +5,7 @@ class Task
   private string $description;
   private DateTime $dateCreated;
   private DateTime $dateUpdate;
-  private DateTime $dateDone;
+  private ?DateTime $dateDone = null;
   private bool $isDone = false;
   private int $priority;
   private User $user;
@@ -28,9 +28,9 @@ class Task
   /**
    * @return string
    */
-  private function getDescription($description): string
+  public function getDescription(): string
   {
-    return $description;
+    return $this->description;
   }
 
   /**
@@ -38,8 +38,7 @@ class Task
    */
   public function setDescription(string $description): void
   {
-    $this->description = $this->getDescription($description);
-    $this->setDateUpdate(new DateTime());
+    $this->description = $description;
   }
 
   /**
@@ -69,7 +68,7 @@ class Task
   /**
    * @param DateTime $dateUpdate
    */
-  public function setDateUpdate(DateTime $dateUpdate): void
+  private function setDateUpdate(DateTime $dateUpdate): void
   {
     $this->dateUpdate = $this->getDateUpdate($dateUpdate);
   }
@@ -77,17 +76,17 @@ class Task
   /**
    * @return DateTime
    */
-  private function getDateDone($dateDone): DateTime
+  public function getDateDone(): DateTime
   {
-    return $dateDone;
+    return $this->dateDone;
   }
 
   /**
    * @param DateTime $dateDone
    */
-  public function setDateDone(DateTime $dateDone): void
+  public function setDateDone($dataDone): void
   {
-    $this->dateDone = $this->getDateDone($dateDone);
+    $this->dateDone = $dataDone;
   }
 
   /**
@@ -159,10 +158,8 @@ class Task
   /**
    * @param array $comments
    */
-  public function setComments(array $comments): void
+  public function setComments(Comment $comments): void
   {
-    $this->comments = $comments;
+    $this->comments[] = $comments;
   }
-
-
 }
